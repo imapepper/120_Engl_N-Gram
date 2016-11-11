@@ -14,7 +14,7 @@ public class Main_NGrams {
         File result = new File("Result.txt");
         int n = 3;
         try {
-            file = new File("C:/code/120_Engl_N-Gram/src/resources/harryPotter.txt");
+            file = new File("/Users/Joey/code/120_Engl_N-Gram/src/resources/harry-potter.txt");
             output = new BufferedWriter(new FileWriter(result));
             LinkedHashMap<String, Integer> nGramMap = findNGram(n, file);
             int count = 1;
@@ -45,7 +45,7 @@ public class Main_NGrams {
         }
     }
 
-    public static String constructFileString(File file) throws FileNotFoundException {
+    static String constructFileString(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         String fileString = "";
         while (scanner.hasNextLine()) {
@@ -76,7 +76,7 @@ public class Main_NGrams {
                 nGramList.remove(0);
             }
         }
-        LinkedHashMap<String, Integer> sortedMap = countMap.entrySet()
+        return countMap.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByKey())
                 .sorted(Map.Entry.comparingByValue(Collections.reverseOrder()))
@@ -86,7 +86,6 @@ public class Main_NGrams {
                         (e1, e2) -> e1,
                         LinkedHashMap::new
                 ));
-        return sortedMap;
     }
 
     private static List<String> nextNGram(List<String> nGramList, String previousGram) {
